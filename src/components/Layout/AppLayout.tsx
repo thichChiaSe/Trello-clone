@@ -18,6 +18,7 @@ import { NavLink } from 'react-router-dom';
 import ScrollToTop from 'react-scroll-to-top';
 import { AppRoutes } from './AppRoutes';
 import { MenuList } from './MenuList';
+import { ButtonCountries } from 'components/Common/ButtonCountries';
 
 const drawerWidth: number = 250;
 
@@ -79,11 +80,12 @@ export function AppLayout() {
           {open && (
             <Typography
               sx={{
-                marginRight: '30px',
+                textAlign: 'center',
+                marginRight: '50px',
                 fontWeight: 'bold',
               }}
             >
-              {t('Provincial Data Hub')}
+              {t('Trello')}
             </Typography>
           )}
           <IconButton onClick={toggleDrawer}>
@@ -93,6 +95,15 @@ export function AppLayout() {
         </Toolbar>
         {/* <Divider /> */}
         <MenuList />
+        <div className="switch-language">
+          <ul
+            className="dropdown-menu"
+            aria-labelledby="dropdownMenuButton1"
+            style={{ position: 'absolute', bottom: '60px' }}
+          >
+            <ButtonCountries />
+          </ul>
+        </div>
       </Drawer>
       <Box
         component="main"

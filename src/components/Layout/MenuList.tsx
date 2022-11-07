@@ -33,56 +33,13 @@ export function MenuList() {
   const [openHistory, setOpenHistory] = useState(false);
   const categories = [
     {
-      text: t('Province'),
-      link: '/provinces',
+      text: t('Bảng'),
+      link: '/table',
     },
     {
-      text: t('District'),
+      text: t('Cài đặt'),
       link: '/districts',
     },
-    {
-      text: t('Sites'),
-      link: '/sites',
-    },
-    {
-      text: t('Gender'),
-      link: '/genders',
-    },
-    {
-      text: t('Age groups'),
-      link: '/age-groups',
-    },
-    {
-      text: t('Key Population'),
-      link: '/key-populations',
-    },
-    {
-      text: t('Drug'),
-      link: '/drugs',
-    },
-    {
-      text: t('Synonyms'),
-      link: '/synonyms',
-    },
-  ];
-
-  const histories = [
-    {
-      text: t('Testing'),
-      link: '/testing',
-    },
-    {
-      text: t('PrEP'),
-      link: '/prep',
-    },
-    {
-      text: t('ART'),
-      link: '/art',
-    },
-    // {
-    //   text: t('SHI'),
-    //   link: '/shi',
-    // },
   ];
 
   // const useStyles = makeStyles({
@@ -95,10 +52,10 @@ export function MenuList() {
   // });
   // const classes = useStyles();
   return (
-    <List component="nav" style={{ height: 'calc(100vh - 65px)', overflow: 'auto' }}>
+    <List component="nav" style={{ height: 'calc(100vh - 10px)', overflow: 'auto' }}>
       <Link to="/dashboard">
         <ListItemButton style={{ backgroundColor: '#F8F9FE', borderRadius: '5px', margin: '7px' }}>
-          <ListItemIcon>
+          <ListItemIcon style={{ minWidth: '40px' }}>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText primary={t('Dashboard')} />
@@ -107,10 +64,10 @@ export function MenuList() {
       <Divider sx={{ my: 1 }} />
       <div style={{ backgroundColor: '#F8F9FE', borderRadius: '5px', margin: '7px' }}>
         <ListItemButton onClick={() => setOpenCate(!openCate)}>
-          <ListItemIcon>
+          <ListItemIcon style={{ minWidth: '40px' }}>
             <CategoryOutlinedIcon />
           </ListItemIcon>
-          <ListItemText primary={t('Category')} />
+          <ListItemText primary={t('Không gian làm việc')} style={{ minWidth: '160px' }} />
           {openCate ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse className="Open" in={openCate} timeout="auto" unmountOnExit>
@@ -127,68 +84,8 @@ export function MenuList() {
             ))}
           </List>
         </Collapse>
-        <Link to="/client">
-          <ListItemButton>
-            <ListItemIcon>
-              <GroupIcon />
-            </ListItemIcon>
-            <ListItemText primary={t('Client')} />
-          </ListItemButton>
-        </Link>
-        <ListItemButton onClick={() => setOpenHistory(!openHistory)}>
-          <ListItemIcon>
-            <WorkHistoryIcon />
-          </ListItemIcon>
-          <ListItemText primary={t('Treatment History')} />
-          {openCate ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={openHistory} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding sx={{ pl: 2 }}>
-            {histories.map((cate) => (
-              <Link key={cate.link} to={cate.link}>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <FiberManualRecordIcon sx={{ fontSize: 10 }} />
-                  </ListItemIcon>
-                  <ListItemText primary={cate.text} />
-                </ListItemButton>
-              </Link>
-            ))}
-          </List>
-        </Collapse>
-        <Link to="/drug-histories">
-          <ListItemButton>
-            <ListItemIcon>
-              <MedicationIcon />
-            </ListItemIcon>
-            <ListItemText primary={t('Drug History')} />
-          </ListItemButton>
-        </Link>
       </div>
       <Divider sx={{ my: 1 }} />
-
-      <div
-        className="report"
-        style={{ backgroundColor: '#F8F9FE', borderRadius: '5px', margin: '7px' }}
-      >
-        <Link to="/report">
-          <ListItemButton>
-            <ListItemIcon>
-              <AssessmentIcon />
-            </ListItemIcon>
-            <ListItemText primary={t('Report')} />
-          </ListItemButton>
-        </Link>
-      </div>
-      <div className="switch-language">
-        <ul
-          className="dropdown-menu"
-          aria-labelledby="dropdownMenuButton1"
-          style={{ marginTop: '220px' }}
-        >
-          <ButtonCountries />
-        </ul>
-      </div>
     </List>
   );
 }
