@@ -1,0 +1,227 @@
+{
+    "common": {
+        "yoB": "Năm Sinh",
+        "phone": "Sđt",
+        "Fullname": "Họ & tên",
+        "date": "Ngày",
+        "Test result": "Kết quả kiểm tra",
+        "ReExamination Period": "Giai đoạn tái thẩm định",
+        "treatment Status": "Tình trạng điều trị",
+        "prEP Graph": "Biểu đồ prEP",
+        "granted Drugs": "thuốc được cấp",
+        "Next date": "ngày tiếp theo",
+        "Out of medicine date": "hết thuốc ngày",
+        "max Countinuous Days": "Số ngày liên tục tối đa",
+        "is Continuous": "liên tục",
+        "unit": "Đơn Vị"
+    },
+    "auth": {
+        "Username": "Tài khoản",
+        "Password": "Mật khẩu",
+        "Remember login": "Nhớ mật khẩu",
+        "Login": "Đăng nhập",
+        "Forgot password?": "Quên mật khẩu?",
+        "Logged in successfully": "Đăng nhập thành công"
+    },
+    "sidebar": {
+        "ProvincialDataHub": "Dữ liệu HIV",
+        "Category": {
+            "Title": "Danh mục",
+            "Province": {
+                "title": "Tỉnh / Thành phố"
+            },
+            "District": {
+                "title": "Quận / Huyện",
+                "code": "Mã",
+                "type": "LOẠI",
+                "name": "TÊN",
+                "slug": "SLUG",
+                "standard": "TIÊU CHUẨN",
+                "PleaseEnterTheCodeDisTrict": "Vui lòng nhập mã quận/huyện",
+                "PleaseEnterTheNameDistrict": "Vui lòng nhập tên quận/huyện",
+                "PleaseEnterDisTrict": "Vui lòng nhập địa chỉ",
+                "PleaseEnterSlug": "Vui lòng nhập slug",
+                "ChooseTypeProvince": "Chọn loại Tỉnh/TP",
+                "InputCodeDistrict": "Nhập mã Quận/Huyện",
+                "ChooseTypeDistrict": "Chọn loại Quận/Huyện",
+                "NameDistrict": "Tên Quận/Huyện*",
+                "TypeDistrict": "Loại Quận/Huyện",
+                "InputSlug": "Nhập Slug"
+            },
+            "Site": {
+                "title": "Cơ sở"
+            },
+            "Gender": {
+                "title": "Giới tính"
+
+            },
+            "AgeGroups": {
+                "title": "Nhóm tuổi",
+                "name": "TÊN",
+                "TO": "TỪ",
+                "FROM": "ĐẾN",
+                "inputAgeGroupName": "Nhập tên nhóm tuổi",
+                "nameAgroupName": "Tên nhóm tuổi",
+                "inputNumericalOrder": "Nhập thứ tự",
+                "numbericalOder": "Thứ tự",
+                "AreYouSureYouWantDeleteGender": "Bạn có chắc chắn muốn xoá giới tính",
+                "ThisIsAnActionThatCannotBeUndone": "ây là thao tác không thể hoàn tác."
+            },
+            "KeyPopulation": {
+                "title": "Nhóm nguy cơ"
+
+            },
+            "Drug": {
+                "title": "Thuốc"
+
+            },
+            "Synonyms": {
+                "title": "Từ đồng nghĩa"
+            }
+
+        }
+    },
+    "form": {
+        "Description is required": "Vui lòng nhập mô tả",
+        "Description": "Mô tả",
+        "SubConfirmDeleteMessage": "Đây là thao tác không thể hoàn tác",
+        "subtitle": "Vui lòng nhập đầy đủ các thông tin vào ô bên dưới",
+        "category": {
+            "drug": {
+                "Drug name": "Tên thuốc",
+                "Drug unit": "Đơn vị tính",
+                "Drug order": "Tứ tự thuốc",
+                "Input drug name": "Nhập tên thuốc",
+                "Drug category": " Quản lý danh mục thuốc",
+                "Input drug unit": "Nhập đơn vị thuốc"
+            },
+            "key population": {
+                "Key population management": "Quản lý danh mục nhóm nguy cơ",
+                "Input key population description": "Nhập mô tả",
+                "Key population name is required": "Vui lòng nhập tên nhóm nguy cơ",
+                "Key population name": "Tên nhóm nguy cơ",
+                "Input key population name": "Nhập tên nhóm nguy cơ"
+            },
+            "province": {
+                "Update province successfully": "Cập nhật thành phố thành công",
+                "Create province successfully": "Tạo nhóm thành phố thành công"
+            },
+            "sites": {
+                "Update sites successfully": "Cập nhật cơ sở thành công",
+                "Create sites successfully": "Tạo nhóm cơ sở thành công"
+            },
+            "gender": {
+                "Update gender successfully": "Cập nhật giới tính thành công",
+                "Create gender successfully": "Tạo nhóm giới tính thành công"
+            },
+            "Agegroup": {
+                "Update Agegroup successfully": "Cập nhật nhóm tuổi thành công",
+                "Create Agegroup successfully": "Tạo nhóm nhóm tuổi thành công"
+            },
+            "districts": {
+                "Update districts successfully": "Cập nhật quận huyện thành công",
+                "Create districts successfully": "Tạo nhóm quận huyện thành công"
+            },
+            "Client": "Khách hàng",
+            "Treatment History": {
+                "title": "Lịch sử điều trị",
+                "Testing": "Xét nghiệm",
+                "PrEP": "PrEP",
+                "ART": "Điều trị ARV",
+                "SHI": "Bảo hiểm"
+            },
+            "Drug History": "Báo cáo dược",
+            "Report": "Dữ liệu tổng hợp"
+        }
+    },
+    "button": {
+        "common": {
+            "createNewSynonyms": "Tạo mới từ đồng nghĩa",
+            "accept": "Chấp nhận",
+            "cancel": "Hủy",
+            "delete": "Xóa",
+            "Action": "THAO TÁC",
+            "Confirm": "Xác nhận"
+        },
+        "category": {
+            "drug": {
+                "Update drug successfully": "Cập nhật thuốc thành công",
+                "Create drug successfully": "Tạo nhóm thuốc thành công"
+            },
+            "key population": {
+                "Update key population successfully": "Cập nhật nhóm nguy cơ thành công",
+                "Create key population successfully": "Tạo nhóm nguy cơ thành công"
+            },
+            "province": {
+                "Update province successfully": "Cập nhật thành phố thành công",
+                "Create province successfully": "Tạo nhóm thành phố thành công"
+            },
+            "sites": {
+                "Update sites successfully": "Cập nhật cơ sở thành công",
+                "Create sites successfully": "Tạo nhóm cơ sở thành công"
+            },
+            "gender": {
+                "Update gender successfully": "Cập nhật giới tính thành công",
+                "Create gender successfully": "Tạo nhóm giới tính thành công"
+            },
+            "Agegroup": {
+                "Update Agegroup successfully": "Cập nhật nhóm tuổi thành công",
+                "Create Agegroup successfully": "Tạo nhóm nhóm tuổi thành công"
+            },
+            "districts": {
+                "Update districts successfully": "Cập nhật quận huyện thành công",
+                "Create districts successfully": "Tạo nhóm quận huyện thành công"
+            }
+        }
+
+    },
+    "breadcrumb": {
+        "": ""
+    },
+    "notification": {
+        "Fill in required fields below": "Vui lòng nhập đầy đủ các thông tin vào ô bên dưới",
+        "ConfirmDeleteMessage": "Bạn có chắc muốn xóa {{type}} '{{item}}'?",
+        "No data to display": "Chưa có dữ liệu",
+        "auth": {
+            "Input your password": "Vui lòng nhập mật khẩu",
+            "Input your username": "Vui lòng nhập tên tài khoản",
+            "NOT_EXIST_ACCOUNT": "Tài khoản không tồn tại",
+            "INCORRECT_USERNAME_PASSWORD": "Sai tên đăng nhập hoặc mật khẩu"
+        },
+        "category": {
+            "Order is required": "Vui lòng nhập thứ tự",
+            "drug": {
+                "Drug name is required": "Vui lòng nhập tên thuốc",
+                "Drug unit is required": "Vui lòng nhập đơn vị thuốc"
+            },
+            "key population": {
+                "Update key population successfully": "Cập nhật nhóm nguy cơ thành công",
+                "Create key population successfully": "Tạo nhóm nguy cơ thành công"
+            },
+            "province": {
+                "Update province successfully": "Cập nhật thành phố thành công",
+                "Create province successfully": "Tạo nhóm thành phố thành công"
+            },
+            "sites": {
+                "Update sites successfully": "Cập nhật cơ sở thành công",
+                "Create sites successfully": "Tạo nhóm cơ sở thành công"
+            },
+            "gender": {
+                "Update gender successfully": "Cập nhật giới tính thành công",
+                "Create gender successfully": "Tạo nhóm giới tính thành công"
+            },
+            "Agegroup": {
+                "Update Agegroup successfully": "Cập nhật nhóm tuổi thành công",
+                "Create Agegroup successfully": "Tạo nhóm nhóm tuổi thành công"
+            },
+            "districts": {
+                "Update districts successfully": "Cập nhật quận huyện thành công",
+                "Create districts successfully": "Tạo nhóm quận huyện thành công"
+            }
+        }
+    },
+    "placeholder": {
+        "Search": "Tìm kiếm",
+        "": ""
+    }
+}
