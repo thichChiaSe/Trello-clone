@@ -34,7 +34,7 @@ export function MenuList() {
   const categories = [
     {
       text: t('Bảng'),
-      link: '/table',
+      link: '/todo',
     },
     {
       text: t('Cài đặt'),
