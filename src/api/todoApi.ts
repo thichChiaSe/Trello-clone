@@ -17,4 +17,9 @@ const todoApi = {
     const url = `${apiLinks.todo.listTodo}`;
     return axiosClient.put(url, data);
   },
+  remove(id: string): Promise<any> {
+    return axiosClient.delete(`${apiLinks.todo.listTodo}/${id}`);
+  },
 };
+
+export default todoApi;
