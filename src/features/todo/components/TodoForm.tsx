@@ -1,7 +1,7 @@
 import { Button, CircularProgress, Box } from '@mui/material';
 import { Todo } from 'models/todo';
 import { Alert } from '@mui/lab';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -20,6 +20,8 @@ export default function TodoForm({ initialValues, onClose }: TodoFormProps): JSX
   const [error, setError] = useState<string>('');
   const isEdit = Boolean(initialValues?.id);
   const dispatch = useAppDispatch();
+  const [todoList, setTodoList] = useState(data);
+  const [postList, setPostList] = useState([]);
   const {
     control,
     handleSubmit,
@@ -29,11 +31,26 @@ export default function TodoForm({ initialValues, onClose }: TodoFormProps): JSX
     resolver: yupResolver(schema),
   });
   console.log('data', data);
-  const handleSubmitForm = (formValue: Todo) => {};
+  const handleSubmitForm = (e: any) => {
+    setTodoList(todoList);
+  };
+  const handleChange = (e: any) => {
+    setPostList(e.target.value);
+    console.log('');
+  };
+  useEffect(() => {
+    setTodoList(todoList.concat());
+  }, [setTodoList]);
+
   return (
     <Box maxWidth={400}>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
-        <InputField name="name" control={control} placeholder={'Nhập tên todo'} />
+        <InputField
+          name="name"
+          control={control}
+          placeholder={'Nhập tên todo'}
+          onChange={(s) => console.log(s.target.value)}
+        />
 
         {error && <Alert severity="error">{error}</Alert>}
 

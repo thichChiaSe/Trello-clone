@@ -1,11 +1,10 @@
 import { Button, CardActions, CardContent, Typography } from '@mui/material';
 import Popup from 'components/Common/PopUp';
 import { Todo } from 'models/todo';
-import React from 'react';
-import { data } from '../../../api/dataFake';
+import React, { useEffect } from 'react';
 import TodoForm from './TodoForm';
 
-export default function CardCpn({ task, onclick, children, background }: any) {
+export default function CardComponent({ task, onclick, children, background }: any) {
   const [openPopup, setOpenPopup] = React.useState(false);
   const [todo, setTodo] = React.useState<Todo>();
   const initialValues: Todo = {
@@ -16,6 +15,7 @@ export default function CardCpn({ task, onclick, children, background }: any) {
   const handleAdd = () => {
     setOpenPopup(true);
   };
+
   return (
     <div>
       <CardContent style={{ backgroundColor: `${background}`, borderRadius: '5%' }}>
@@ -34,7 +34,6 @@ export default function CardCpn({ task, onclick, children, background }: any) {
         openPopup={openPopup}
         onClose={() => {
           setOpenPopup(false);
-          setTodo(undefined);
         }}
       >
         <TodoForm onClose={() => setOpenPopup(false)} />
