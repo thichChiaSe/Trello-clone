@@ -1,4 +1,6 @@
 export interface Todo {
-  id?: string;
+  id: string;
   name: string;
+  members: string[];
+  status: number;
 }

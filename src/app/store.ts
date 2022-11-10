@@ -7,10 +7,12 @@ import { history } from 'utils';
 import rootSaga from './rootSaga';
 
 import changePasswordReducer from '../features/auth/changePasswordSlice';
+import todoReducer from 'features/todo/todoSlice';
 const rootReducer = combineReducers({
   router: connectRouter(history),
   auth: authReducer,
   changePassword: changePasswordReducer,
+  todo: todoReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

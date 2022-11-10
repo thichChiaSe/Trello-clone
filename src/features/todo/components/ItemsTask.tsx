@@ -55,10 +55,7 @@ export default function ItemsTask({ status, props }: any) {
                 <EditIcon onClick={handleEdit} />
               </div>
               <div className={classes.delete}>
-                <DeleteIcon
-                  onClick={() => handleDelete(todo)}
-                  // onClick={() => handleClick(todo)}
-                />
+                <DeleteIcon onClick={() => handleDelete(todo)} />
               </div>
             </div>
           </div>

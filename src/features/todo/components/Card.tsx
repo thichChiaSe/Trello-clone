@@ -8,7 +8,10 @@ export default function CardComponent({ task, onclick, children, background }: a
   const [openPopup, setOpenPopup] = React.useState(false);
   const [todo, setTodo] = React.useState<Todo>();
   const initialValues: Todo = {
+    id: '',
+    members: [],
     name: '',
+    status: 0,
     ...todo,
   };
 

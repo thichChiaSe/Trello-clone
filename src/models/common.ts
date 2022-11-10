@@ -6,8 +6,8 @@ export interface PaginationParams {
 export interface ListResponse<T> {
   data: T[];
   errorMessage: string;
-  pageCount: number;
-  totalRow: number;
+  totalPages: number;
+  totalRows: number;
   succeed: boolean;
   pagination: PaginationParams;
 }

@@ -22,6 +22,8 @@ const useStyles = makeStyles({
 export default function TodoCard() {
   const classes = useStyles();
 
+  function handleClick() {}
+
   return (
     <div className={classes.wrapper}>
       <Card className={classes.card}>
