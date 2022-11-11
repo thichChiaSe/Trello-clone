@@ -19,6 +19,7 @@ export interface ResponseMessage<T> {
 }
 
 export interface ListParams {
+  name: string;
   pageIndex: number;
   pageSize: number;
   sort?: string;

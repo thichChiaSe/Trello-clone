@@ -8,7 +8,7 @@ const todoApi = {
     return axiosClient.get(apiLinks.todo.listTodo, { params });
   },
   getById(id: string): Promise<Todo> {
-    return axiosClient.get(`${apiLinks.todo.getById}/${id}`);
+    return axiosClient.get(`${apiLinks.todo.getById}`);
   },
   add(data: Todo): Promise<Todo> {
     return axiosClient.post(apiLinks.todo.listTodo, data);

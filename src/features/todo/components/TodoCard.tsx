@@ -4,6 +4,10 @@ import { data } from '../../../api/dataFake';
 import CardComponent from './Card';
 import { makeStyles } from '@mui/styles';
 import ItemsTask from './ItemsTask';
+import { selectTodoFilter, selectTodoList, todoActions } from '../todoSlice';
+import { useAppSelector } from 'app/hooks';
+import { useDispatch } from 'react-redux';
+import { Todo } from 'models';
 
 const useStyles = makeStyles({
   wrapper: { marginTop: '200px' },
@@ -12,8 +16,18 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: ' space-around',
   },
-  cardComponent: {
-    border: '1px solid gray',
+  cardComponent__1: {
+    border: '1px solid red',
+    borderRadius: '5%',
+    width: '200px',
+  },
+  cardComponent__2: {
+    border: '1px solid yellow',
+    borderRadius: '5%',
+    width: '200px',
+  },
+  cardComponent__3: {
+    border: '1px solid green',
     borderRadius: '5%',
     width: '200px',
   },
@@ -21,20 +35,45 @@ const useStyles = makeStyles({
 
 export default function TodoCard() {
   const classes = useStyles();
+  const toDoList = useAppSelector(selectTodoList);
+  console.log('data', toDoList);
+  const [todo, setToDo] = React.useState<Todo>();
 
-  function handleClick() {}
+  const filter = useAppSelector(selectTodoFilter);
+
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(todoActions.fetchTodoList(filter));
+    console.log(
+      '🚀 ~ file: TodoCard.tsx ~ line 43 ~ React.useEffect ~ todoActions.fetchTodoList(filter)',
+      todoActions.fetchTodoList(filter)
+    );
+  }, [dispatch, filter]);
 
   return (
     <div className={classes.wrapper}>
       <Card className={classes.card}>
-        <div className={classes.cardComponent}>
-          <CardComponent task="Cần làm" children={<ItemsTask status={0} />} background="red" />
+        <div className={classes.cardComponent__1}>
+          <CardComponent
+            task="Cần làm"
+            children={<ItemsTask status={0} toDoList={toDoList} />}
+            background="red"
+          />
         </div>
-        <div className={classes.cardComponent}>
-          <CardComponent task="Đang làm" children={<ItemsTask status={1} />} background="yellow" />
+        <div className={classes.cardComponent__2}>
+          <CardComponent
+            task="Đang làm"
+            children={<ItemsTask status={0} toDoList={toDoList} />}
+            background="yellow"
+          />
         </div>
-        <div className={classes.cardComponent}>
-          <CardComponent task="Đã xong" children={<ItemsTask status={2} />} background="green" />
+        <div className={classes.cardComponent__3}>
+          <CardComponent
+            task="Đã xong"
+            children={<ItemsTask status={0} toDoList={toDoList} />}
+            background="green"
+          />
         </div>
       </Card>
     </div>

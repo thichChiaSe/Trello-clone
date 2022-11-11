@@ -3,4 +3,5 @@ export interface Todo {
   name: string;
   members: string[];
   status: number;
+  description: string;
 }

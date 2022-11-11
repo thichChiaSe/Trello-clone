@@ -3,6 +3,7 @@ import { data } from '../../../api/dataFake';
 import { makeStyles } from '@mui/styles';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Todo } from 'models';
 const useStyles = makeStyles({
   wrap: {
     marginTop: '10px',
@@ -18,32 +19,35 @@ const useStyles = makeStyles({
   delete: { cursor: 'pointer' },
 });
 
-export default function ItemsTask({ status, props }: any) {
-  const [todo, setTodo] = useState(data);
-  // const [todolist, setTodoList] = props;
+export interface TodoProps {
+  toDoList: Todo[];
+  status: number;
+  onEdit?: (toDo: Todo) => void;
+  onRemove?: (toDo: Todo) => void;
+}
+
+export default function ItemsTask({ status, toDoList, onEdit, onRemove }: TodoProps) {
+  const [todoList, setTodoList] = useState(data);
   const [edit, setEdit] = useState(null);
   const handleDelete = (todolist: any) => {
-    let deleteItem = todo.filter((e) => {
+    let deleteItem = todoList.filter((e) => {
       return !e.id;
     });
-    setTodo(deleteItem);
-    // const index = todolist.findIndex((x: any) => x.id === todolist.id);
-    // if (index < 0) return;
-    // const newTodoList = [...todolist];
-    // newTodoList.splice(index, 1);
-    // setTodo(newTodoList);
+    setTodoList(deleteItem);
   };
 
   const handleEdit = ({ id }: any) => {
     console.log('aaa');
-    const edits = todo.find((e) => e.id === id);
+    const edits = todoList.find((e) => e.id === id);
     // setEdit(edits);
   };
-  useEffect(() => {}, [setTodo]);
+
+  useEffect(() => {}, [setTodoList]);
+
   const classes = useStyles();
   return (
     <div className={classes.wrap}>
-      {todo
+      {toDoList
         .filter((e) => e.status === status)
         .map((e, index) => (
           <div key={e.id} className={classes.item}>
@@ -55,7 +59,7 @@ export default function ItemsTask({ status, props }: any) {
                 <EditIcon onClick={handleEdit} />
               </div>
               <div className={classes.delete}>
-                <DeleteIcon onClick={() => handleDelete(todo)} />
+                <DeleteIcon onClick={() => handleDelete(todoList)} />
               </div>
             </div>
           </div>

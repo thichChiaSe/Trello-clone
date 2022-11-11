@@ -1,5 +1,5 @@
 const userModule = 'https://auth.quanlyhiv.vn/api';
-const data = 'http://202.78.227.174:9091/swagger/index.html';
+const data = 'http://202.78.227.174:9091/api';
 export const apiLinks = {
   auth: {
     login: `${userModule}/Users/Login`,
@@ -7,9 +7,9 @@ export const apiLinks = {
     getUserInfo: `${userModule}/Users/GetUserInfo`,
   },
   todo: {
-    listTodo: `${data}/api/Boards`,
+    listTodo: `${data}/Boards`,
     getById: (id: string) => {
-      return `${data}/api/Boards/${id}`;
+      return `${data}/Boards/${id}`;
     },
   },
 };

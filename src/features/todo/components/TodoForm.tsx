@@ -5,10 +5,12 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
-import { useAppDispatch } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { InputField } from 'components/FormFields';
 import { data } from '../../../api/dataFake';
+import todoApi from 'api/todoApi';
+import { selectTodoFilter, todoActions } from '../todoSlice';
 export interface TodoFormProps {
   initialValues?: Todo;
   onClose: () => void;
@@ -17,11 +19,13 @@ const schema = yup.object().shape({
   name: yup.string().required('Nhập tên'),
 });
 export default function TodoForm({ initialValues, onClose }: TodoFormProps): JSX.Element {
-  const [error, setError] = useState<string>('');
   const isEdit = Boolean(initialValues?.id);
   const dispatch = useAppDispatch();
+  const filter = useAppSelector(selectTodoFilter);
+  const [error, setError] = useState<string>('');
   const [todoList, setTodoList] = useState(data);
   const [postList, setPostList] = useState([]);
+
   const {
     control,
     handleSubmit,
@@ -31,16 +35,24 @@ export default function TodoForm({ initialValues, onClose }: TodoFormProps): JSX
     resolver: yupResolver(schema),
   });
   console.log('data', data);
-  const handleSubmitForm = (e: any) => {
-    setTodoList(todoList);
+
+  const handleSubmitForm = async (formValues: Todo) => {
+    if (isEdit) {
+      await todoApi.update(formValues);
+    } else {
+      await todoApi.add(formValues);
+    }
+    dispatch(todoActions.fetchTodoList(filter));
+    onClose();
   };
-  const handleChange = (e: any) => {
-    setPostList(e.target.value);
-    console.log('');
-  };
-  useEffect(() => {
-    setTodoList(todoList.concat());
-  }, [setTodoList]);
+
+  // const handleChange = (e: any) => {
+  //   setPostList(e.target.value);
+  //   console.log('');
+  // };
+  // useEffect(() => {
+  //   setTodoList(todoList.concat());
+  // }, [setTodoList]);
 
   return (
     <Box maxWidth={400}>

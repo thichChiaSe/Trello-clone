@@ -12,6 +12,7 @@ export default function CardComponent({ task, onclick, children, background }: a
     members: [],
     name: '',
     status: 0,
+    description: '',
     ...todo,
   };
 

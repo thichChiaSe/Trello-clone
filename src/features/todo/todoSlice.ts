@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { ListParams, ListResponse } from 'models';
+import { ListParams, ListResponse, Todo } from 'models';
 import React from 'react';
-
-export interface Todo {
+export interface TodoState {
   list: Todo[];
   totalRows: number;
   totalPages: number;
@@ -11,12 +10,12 @@ export interface Todo {
   loading: boolean;
 }
 
-const initialState: Todo = {
+const initialState: TodoState = {
   loading: false,
   list: [],
   filter: {
     pageIndex: 0,
-    pageSize: 5,
+    pageSize: 10,
     name: '',
   },
   totalPages: 0,
@@ -32,9 +31,9 @@ const todoSlice = createSlice({
     },
     fetchTodoListSuccess(state, action: PayloadAction<ListResponse<Todo>>) {
       state.list = action.payload.data;
-      state.loading = false;
       state.totalRows = action.payload.totalRows;
       state.totalPages = action.payload.totalPages;
+      state.loading = false;
     },
     fetchTodoFailed(state) {
       state.loading = false;

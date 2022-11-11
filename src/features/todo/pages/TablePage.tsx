@@ -1,12 +1,12 @@
 import { Button, Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { useAppSelector } from 'app/hooks';
 import Popup from 'components/Common/PopUp';
 import { Todo } from 'models/todo';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import TodoForm from '../components/TodoForm';
 
-type Props = {};
 const useStyles = makeStyles((theme: Theme) => ({
   wrapper: {
     display: 'flex',
@@ -14,15 +14,22 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
   },
 }));
-export default function TablePage({}: Props) {
+export default function TablePage() {
   const classes = useStyles();
-  const [openPopup, setOpenPopup] = useState(false);
   const history = useHistory();
 
   const [todo, setTodo] = useState<Todo>();
+  const [openPopup, setOpenPopup] = useState(false);
+
+  // const initialValues: Todo = {
+  //   name: '',
+  //   ...todo,
+  // } as Todo;
+
   const handleClick = () => {
     history.push('/todo-detail');
   };
+
   return (
     <div
       className="classes.wrapper"
