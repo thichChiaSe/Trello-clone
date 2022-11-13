@@ -85,7 +85,7 @@ export function AppLayout() {
                 fontWeight: 'bold',
               }}
             >
-              {t('Trello')}
+              {t('Trolle')}
             </Typography>
           )}
           <IconButton onClick={toggleDrawer}>

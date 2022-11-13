@@ -56,7 +56,7 @@ export function Header() {
   };
 
   return (
-    <>
+    <div style={{ borderBottom: '1px solid #cec8c8' }}>
       <Toolbar
         sx={{
           display: 'flex',
@@ -150,6 +150,6 @@ export function Header() {
       >
         <ChangePasswordForm onSubmit={handleSubmit}></ChangePasswordForm>
       </Popup>
-    </>
+    </div>
   );
 }

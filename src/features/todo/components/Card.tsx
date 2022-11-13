@@ -1,13 +1,13 @@
 import { Button, CardActions, CardContent, Typography } from '@mui/material';
 import Popup from 'components/Common/PopUp';
-import { Todo } from 'models/todo';
+import { Board } from 'models/todo';
 import React, { useEffect } from 'react';
 import TodoForm from './TodoForm';
 
 export default function CardComponent({ task, onclick, children, background }: any) {
   const [openPopup, setOpenPopup] = React.useState(false);
-  const [todo, setTodo] = React.useState<Todo>();
-  const initialValues: Todo = {
+  const [todo, setTodo] = React.useState<Board>();
+  const initialValues: Board = {
     id: '',
     members: [],
     name: '',

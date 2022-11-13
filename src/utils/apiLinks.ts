@@ -11,5 +11,6 @@ export const apiLinks = {
     getById: (id: string) => {
       return `${data}/Boards/${id}`;
     },
+    columns: `${data}/Columns`,
   },
 };

@@ -2,7 +2,7 @@ import { Button, Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useAppSelector } from 'app/hooks';
 import Popup from 'components/Common/PopUp';
-import { Todo } from 'models/todo';
+import { Board } from 'models/todo';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import TodoForm from '../components/TodoForm';
@@ -18,7 +18,7 @@ export default function TablePage() {
   const classes = useStyles();
   const history = useHistory();
 
-  const [todo, setTodo] = useState<Todo>();
+  const [todo, setTodo] = useState<Board>();
   const [openPopup, setOpenPopup] = useState(false);
 
   // const initialValues: Todo = {

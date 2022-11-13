@@ -3,7 +3,8 @@ import { data } from '../../../api/dataFake';
 import { makeStyles } from '@mui/styles';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Todo } from 'models';
+import { Board } from 'models';
+import CommonDialog from 'components/Common/CommonDialog';
 const useStyles = makeStyles({
   wrap: {
     marginTop: '10px',
@@ -15,35 +16,42 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
   },
   right: { display: 'flex' },
-  edit: { cursor: 'pointer' },
+  edit: { cursor: 'pointer', marginRight: '10px' },
   delete: { cursor: 'pointer' },
 });
 
 export interface TodoProps {
-  toDoList: Todo[];
+  toDoList: Board[];
   status: number;
-  onEdit?: (toDo: Todo) => void;
-  onRemove?: (toDo: Todo) => void;
+  onEdit?: (board: Board) => void;
+  onRemove?: (board: Board) => void;
 }
 
 export default function ItemsTask({ status, toDoList, onEdit, onRemove }: TodoProps) {
-  const [todoList, setTodoList] = useState(data);
-  const [edit, setEdit] = useState(null);
-  const handleDelete = (todolist: any) => {
-    let deleteItem = todoList.filter((e) => {
-      return !e.id;
-    });
-    setTodoList(deleteItem);
+  // const handleEdit = ({ id }: any) => {
+  //   console.log('aaa');
+  //   const edits = todoList.find((e) => e.id === id);
+  //   // setEdit(edits);
+  // };
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState<Board>();
+  const [todo, setTodo] = useState<Board>();
+
+  const handleClose = () => {
+    setOpen(false);
   };
-
-  const handleEdit = ({ id }: any) => {
-    console.log('aaa');
-    const edits = todoList.find((e) => e.id === id);
-    // setEdit(edits);
+  const handleEdit = async (todo: Board) => {
+    setOpen(true);
+    setTodo(todo);
   };
-
-  useEffect(() => {}, [setTodoList]);
-
+  const handleRemoveClick = (todo: Board) => {
+    setSelected(todo);
+    setOpen(true);
+  };
+  const handleRemoveConfirm = (todo: Board) => {
+    onRemove?.(todo);
+    setOpen(false);
+  };
   const classes = useStyles();
   return (
     <div className={classes.wrap}>
@@ -56,14 +64,22 @@ export default function ItemsTask({ status, toDoList, onEdit, onRemove }: TodoPr
             </div>
             <div className={classes.right}>
               <div className={classes.edit}>
-                <EditIcon onClick={handleEdit} />
+                <EditIcon onClick={() => onEdit?.(e)} />
               </div>
               <div className={classes.delete}>
-                <DeleteIcon onClick={() => handleDelete(todoList)} />
+                <DeleteIcon onClick={() => handleRemoveClick(e)} />
               </div>
             </div>
           </div>
         ))}{' '}
+      <CommonDialog
+        open={open}
+        onClose={handleClose}
+        item={selected}
+        onConfirm={handleRemoveConfirm}
+        subMessage="Đây là thao tác không thể hoàn tác	"
+        mainMessage={''}
+      />
     </div>
   );
 }

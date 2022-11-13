@@ -51,7 +51,7 @@ export default function LoginForm({ initialValues, onSubmit }: LoginFormProps) {
         }}
         component="h1"
       >
-        Trello
+        Trolle
       </Typography>
       <Typography
         textTransform="uppercase"

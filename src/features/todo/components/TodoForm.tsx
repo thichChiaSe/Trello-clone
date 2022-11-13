@@ -1,5 +1,5 @@
 import { Button, CircularProgress, Box } from '@mui/material';
-import { Todo } from 'models/todo';
+import { Board } from 'models/todo';
 import { Alert } from '@mui/lab';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -12,7 +12,7 @@ import { data } from '../../../api/dataFake';
 import todoApi from 'api/todoApi';
 import { selectTodoFilter, todoActions } from '../todoSlice';
 export interface TodoFormProps {
-  initialValues?: Todo;
+  initialValues?: Board;
   onClose: () => void;
 }
 const schema = yup.object().shape({
@@ -30,13 +30,13 @@ export default function TodoForm({ initialValues, onClose }: TodoFormProps): JSX
     control,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<Todo>({
+  } = useForm<Board>({
     defaultValues: initialValues,
     resolver: yupResolver(schema),
   });
   console.log('data', data);
 
-  const handleSubmitForm = async (formValues: Todo) => {
+  const handleSubmitForm = async (formValues: Board) => {
     if (isEdit) {
       await todoApi.update(formValues);
     } else {
