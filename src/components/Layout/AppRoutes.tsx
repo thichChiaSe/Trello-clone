@@ -10,7 +10,7 @@ export function AppRoutes() {
         <TablePage />
         {/* <TodoTable /> */}
       </Route>
-      <Route path="/test-1">
+      <Route path="/trolle">
         <Test />
       </Route>
     </Switch>

@@ -37,24 +37,11 @@ export function MenuList() {
       link: '/todo',
     },
     {
-      text: t('Test'),
-      link: '/test',
-    },
-    {
-      text: t('Test-1'),
-      link: '/test-1',
+      text: t('Trolle'),
+      link: '/trolle',
     },
   ];
 
-  // const useStyles = makeStyles({
-  //   nav: {
-  //     boxShadow:
-  //       'rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px',
-  //     backgroundColor: 'white',
-  //     borderRadius: '15px',
-  //   },
-  // });
-  // const classes = useStyles();
   return (
     <List component="nav" style={{ height: 'calc(100vh - 10px)', overflow: 'auto' }}>
       <Link to="/dashboard">
