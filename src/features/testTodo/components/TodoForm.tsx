@@ -10,13 +10,24 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { InputField } from 'components/FormFields';
 import { data } from '../../../api/dataFake';
 import todoApi from 'api/todoApi';
-import { selectTodoFilter, todoActions } from '../todoSlice';
+import { MenuItem } from '@mui/material';
+import { selectTodoFilter, todoActions } from 'features/todo/todoSlice';
+import OptionStatus from './OptionStatus';
+import { makeStyles } from '@mui/styles';
+import { OptionField } from 'components/FormFields/OptionField';
+import { current } from '@reduxjs/toolkit';
 export interface TodoFormProps {
   initialValues?: Board;
   onClose: () => void;
 }
 const schema = yup.object().shape({
-  name: yup.string().required('Nhập tên'),
+  name: yup.string().required('Vui lòng nhập tên'),
+  option: yup.string().required('Vui lòng nhập lựa chọn'),
+});
+const useStyles = makeStyles({
+  btnBottom: {
+    display: 'flex',
+  },
 });
 export default function TodoForm({ initialValues, onClose }: TodoFormProps): JSX.Element {
   const isEdit = Boolean(initialValues?.id);
@@ -25,7 +36,8 @@ export default function TodoForm({ initialValues, onClose }: TodoFormProps): JSX
   const [error, setError] = useState<string>('');
   const [todoList, setTodoList] = useState(data);
   const [postList, setPostList] = useState([]);
-
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
   const {
     control,
     handleSubmit,
@@ -47,20 +59,35 @@ export default function TodoForm({ initialValues, onClose }: TodoFormProps): JSX
     dispatch(todoActions.fetchTodoList(filter));
     onClose();
   };
-
-  // const handleChange = (e: any) => {
-  //   setPostList(e.target.value);
-  //   console.log('');
-  // };
-  // useEffect(() => {
-  //   setTodoList(todoList.concat());
-  // }, [setTodoList]);
-
+  const [currency, setCurrency] = React.useState('');
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrency(event.target.value);
+  };
+  const typeStatus = [
+    { label: 'Completed', value: 'Completed' },
+    { label: 'Pending', value: 'Pending' },
+    { label: 'Inprogress', value: 'Inprogress' },
+  ];
   return (
     <Box maxWidth={400}>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
         <InputField name="name" control={control} placeholder={'Nhập tên todo'} />
-
+        <div style={{ margin: '10px' }}></div>
+        <OptionField
+          name="option"
+          control={control}
+          placeholder="Chọn"
+          label="Chọn"
+          value={currency}
+          onChange={handleChange}
+        >
+          {' '}
+          {typeStatus.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </OptionField>
         {error && <Alert severity="error">{error}</Alert>}
 
         <Box mt={3}>

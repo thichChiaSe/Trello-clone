@@ -7,6 +7,7 @@ import TodoForm from './TodoForm';
 export default function CardComponent({ task, onclick, children, background }: any) {
   const [openPopup, setOpenPopup] = React.useState(false);
   const [todo, setTodo] = React.useState<Board>();
+
   const initialValues: Board = {
     id: '',
     members: [],

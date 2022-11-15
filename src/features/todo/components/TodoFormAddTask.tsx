@@ -1,7 +1,7 @@
 import { Button, CircularProgress, Box } from '@mui/material';
-import { Board } from 'models/todo';
+import { Columns } from 'models/todo';
 import { Alert } from '@mui/lab';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -12,38 +12,30 @@ import { data } from '../../../api/dataFake';
 import todoApi from 'api/todoApi';
 import { selectTodoFilter, todoActions } from '../todoSlice';
 export interface TodoFormProps {
-  initialValues?: Board;
+  initialValues?: Columns;
   onClose: () => void;
 }
 const schema = yup.object().shape({
-  name: yup.string().required('Nhập tên'),
+  label: yup.string().required('Nhập tiêu đề'),
 });
-export default function TodoForm({ initialValues, onClose }: TodoFormProps): JSX.Element {
-  const isEdit = Boolean(initialValues?.id);
+export default function TodoFormAddItem({ initialValues, onClose }: TodoFormProps): JSX.Element {
   const dispatch = useAppDispatch();
   const filter = useAppSelector(selectTodoFilter);
   const [error, setError] = useState<string>('');
-  const [todoList, setTodoList] = useState(data);
-  const [postList, setPostList] = useState([]);
 
   const {
     control,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<Board>({
+  } = useForm<Columns>({
     defaultValues: initialValues,
     resolver: yupResolver(schema),
   });
   console.log('data', data);
 
-  const handleSubmitForm = async (formValues: Board) => {
-    if (isEdit) {
-      await todoApi.update(formValues);
-      toast.success(`${'Cập nhật thành công'}`);
-    } else {
-      await todoApi.add(formValues);
-      toast.success(`${'Tạo mới thành công'}`);
-    }
+  const handleSubmitForm = async (formValues: Columns) => {
+    await todoApi.addColumns(formValues);
+    toast.success(`${'Tạo mới thành công'}`);
     dispatch(todoActions.fetchTodoList(filter));
     onClose();
   };
@@ -59,7 +51,7 @@ export default function TodoForm({ initialValues, onClose }: TodoFormProps): JSX
   return (
     <Box maxWidth={400}>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
-        <InputField name="name" control={control} placeholder={'Nhập tên todo'} />
+        <InputField name="label" control={control} placeholder={'Nhập tên tiêu đề'} />
 
         {error && <Alert severity="error">{error}</Alert>}
 

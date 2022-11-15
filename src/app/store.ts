@@ -8,11 +8,17 @@ import rootSaga from './rootSaga';
 
 import changePasswordReducer from '../features/auth/changePasswordSlice';
 import todoReducer from 'features/todo/todoSlice';
+import districtsReducer from 'features/todo copy/components/tableList/district/districtSlice';
+import provinceReducer from 'features/todo copy/components/tableList/province/provinceSlice';
+import siteReducer from 'features/todo copy/components/tableList/site/siteSlice';
 const rootReducer = combineReducers({
   router: connectRouter(history),
   auth: authReducer,
   changePassword: changePasswordReducer,
   todo: todoReducer,
+  district: districtsReducer,
+  province: provinceReducer,
+  site: siteReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

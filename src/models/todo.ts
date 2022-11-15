@@ -6,6 +6,9 @@ export interface Board {
   description: string;
 }
 export interface Columns {
+  [x: string]: any;
   boardId: string;
   label: string;
+  creater: string;
+  fullName: string;
 }

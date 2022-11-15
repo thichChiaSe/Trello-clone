@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import { data } from '../../../api/dataFake';
+import { Button } from '@mui/material';
 import CardComponent from './Card';
 import { makeStyles } from '@mui/styles';
 import ItemsTask from './ItemsTask';
@@ -11,25 +11,25 @@ import { Board, Columns } from 'models';
 import todoApi from 'api/todoApi';
 import Popup from 'components/Common/PopUp';
 import TodoForm from './TodoForm';
-
+import TodoFormAddItem from './TodoForm';
+import { CommonButton } from 'components/Common/CommonButton';
+import AddIcon from '@mui/icons-material/Add';
+import InputAddPerson from './InputAddPerson';
+import InputAddTask from './InputAddTask';
 const useStyles = makeStyles({
-  wrapper: { marginTop: '200px' },
+  wrapper: { marginTop: '80px' },
   card: {
     minWidth: 275,
     display: 'flex',
     justifyContent: ' space-around',
   },
+  cardComponent: {
+    marginLeft: '10px',
+    border: '1px solid red',
+    borderRadius: '5%',
+    width: '200px',
+  },
   cardComponent__1: {
-    border: '1px solid red',
-    borderRadius: '5%',
-    width: '200px',
-  },
-  cardComponent__2: {
-    border: '1px solid red',
-    borderRadius: '5%',
-    width: '200px',
-  },
-  cardComponent__3: {
     border: '1px solid red',
     borderRadius: '5%',
     width: '200px',
@@ -55,7 +55,29 @@ export default function TodoCard() {
   const filter = useAppSelector(selectTodoFilter);
 
   const dispatch = useDispatch();
-
+  const [{ items }, setItems] = React.useState({ items: [] });
+  // const addItem = () => {
+  //   items.push(
+  //     <>
+  //       <div className={classes.cardComponent}>
+  //         <CardComponent
+  //           task={getColumns.map((e) => e.label)}
+  //           children={
+  //             <ItemsTask
+  //               status={0}
+  //               toDoList={toDoList}
+  //               onEdit={handleEdit}
+  //               onRemove={handleRemove}
+  //             />
+  //           }
+  //           background="red"
+  //         />
+  //         <InputAddPerson />
+  //       </div>
+  //     </>
+  //   );
+  //   setItems({ items: [...items] });
+  // };
   React.useEffect(() => {
     dispatch(todoActions.fetchTodoList(filter));
     dispatch(todoActions.fetchTodoColumns(filter));
@@ -64,7 +86,6 @@ export default function TodoCard() {
   const handleRemove = async (board: Board) => {
     try {
       await todoApi.remove(board?.id || '');
-
       // Trigger to re-fetch list with current filter
       const newFilter = { ...filter };
       dispatch(todoActions.fetchTodoList(newFilter));
@@ -79,6 +100,7 @@ export default function TodoCard() {
   };
   return (
     <div className={classes.wrapper}>
+      {/* <button onClick={addItem}>add</button> */}
       <Card className={classes.card}>
         <div className={classes.cardComponent__1}>
           <CardComponent
@@ -93,41 +115,15 @@ export default function TodoCard() {
             }
             background="red"
           />
+          <InputAddPerson />
         </div>
-        <div className={classes.cardComponent__2}>
-          <CardComponent
-            task={getColumns.map((e) => e.label)}
-            children={
-              <ItemsTask
-                status={0}
-                toDoList={toDoList}
-                onEdit={handleEdit}
-                onRemove={handleRemove}
-              />
-            }
-            background="red"
-          />
-        </div>
-        <div className={classes.cardComponent__3}>
-          <CardComponent
-            task={getColumns.map((e) => e.label)}
-            children={
-              <ItemsTask
-                status={0}
-                toDoList={toDoList}
-                onEdit={handleEdit}
-                onRemove={handleRemove}
-              />
-            }
-            background="red"
-          />
-        </div>
-        <button onClick={(v) => console.log('daa', getColumns)}>Tạo mới</button>
+        {items}
         <Popup
-          title={initialValues?.id ? 'Cập nhật' : 'Tạo mới'}
+          title={initialValues?.id ? 'Cập nhật' : 'Thêm mới'}
           openPopup={openPopup}
           onClose={() => {
             setOpenPopup(false);
+            setToDo(undefined);
           }}
         >
           <TodoForm onClose={() => setOpenPopup(false)} initialValues={initialValues} />

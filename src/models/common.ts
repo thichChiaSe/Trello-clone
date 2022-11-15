@@ -4,6 +4,8 @@ export interface PaginationParams {
   pageCount: number;
 }
 export interface ListResponse<T> {
+  pageCount: number;
+  totalRow: number;
   data: T[];
   errorMessage: string;
   totalPages: number;

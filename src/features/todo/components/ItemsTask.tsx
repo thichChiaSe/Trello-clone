@@ -40,10 +40,7 @@ export default function ItemsTask({ status, toDoList, onEdit, onRemove }: TodoPr
   const handleClose = () => {
     setOpen(false);
   };
-  const handleEdit = async (todo: Board) => {
-    setOpen(true);
-    setTodo(todo);
-  };
+
   const handleRemoveClick = (todo: Board) => {
     setSelected(todo);
     setOpen(true);

@@ -37,8 +37,12 @@ export function MenuList() {
       link: '/todo',
     },
     {
-      text: t('Cài đặt'),
-      link: '/districts',
+      text: t('Test'),
+      link: '/test',
+    },
+    {
+      text: t('Test-1'),
+      link: '/test-1',
     },
   ];
 
