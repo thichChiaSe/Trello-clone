@@ -4,31 +4,35 @@ import { Box, Container, Grid, LinearProgress, TablePagination, Theme } from '@m
 import { viVN } from '@mui/material/locale';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createStyles, makeStyles } from '@mui/styles';
-import districtsApi from 'api/districtApi';
+import provinceApi from 'api/province';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { CommonButton } from 'components/Common/CommonButton';
 import Popup from 'components/Common/PopUp';
 
 import { t } from 'i18next';
-import { Districts } from 'models/district';
+import { ListParams } from 'models';
+import { Province } from 'models/province';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import DistrictsFilter from '../components/districtsFilter';
-import DistrictsForm from '../components/districtsForm';
-import DistrictsTable from '../components/districtsTable';
+import ProvinceForm from '../components/inprogressForm';
+import ProvinceTable from '../components/inprogressTable';
 import {
-  districtsActions,
-  selectDistrictsFilter,
-  selectDistrictsList,
-  selectDistrictsLoading,
-  selectDistrictsPageCount,
-  selectDistrictsTotalRow,
-} from '../districtSlice';
+  provinceActions,
+  selectProvinceFilter,
+  selectProvinceList,
+  selectProvinceLoading,
+  selectProvincePageCount,
+  selectProvinceTotalRow,
+} from '../inprogressSlice';
 
 const theme = createTheme({}, viVN);
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    container: {
+      width: '100%',
+      backgroundColor: '#EDF2F6',
+    },
     titleContainer: {
       display: 'flex',
       flexFlow: 'row nowrap',
@@ -50,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     btn: {
       position: 'absolute',
-      right: '565px',
+      right: '947px',
       top: '190px',
       minWidth: '25px!important',
       maxWidth: '25px!important',
@@ -59,49 +63,48 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function ListPageDistrict() {
-  const districtsList = useAppSelector(selectDistrictsList);
-  const pageCount = useAppSelector(selectDistrictsPageCount);
-  const totalRow = useAppSelector(selectDistrictsTotalRow);
-  const classes = useStyles();
-  const filter = useAppSelector(selectDistrictsFilter);
-  const loading = useAppSelector(selectDistrictsLoading);
+export default function ListPageProvince() {
+  const provinceList = useAppSelector(selectProvinceList);
 
+  const filter = useAppSelector(selectProvinceFilter);
+  const loading = useAppSelector(selectProvinceLoading);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
   const [openPopup, setOpenPopup] = useState(false);
-  const [districts, setDistricts] = useState<Districts>();
+  const [province, setProvince] = useState<Province>();
 
-  const initialValues: Districts = {
+  const initialValues: Province = {
     alias: '',
-    ...districts,
-  } as Districts;
+    ...province,
+  } as Province;
 
   const dispatch = useAppDispatch();
+  const classes = useStyles();
 
   useEffect(() => {
-    dispatch(districtsActions.fetchDistrictsList(filter));
+    dispatch(provinceActions.fetchProvinceList(filter));
   }, [dispatch, filter]);
 
-  // const handleEditDistricts =
-  const handleRemoveDistricts = async (districts: Districts) => {
+  const handleRemoveProvince = async (province: Province) => {
     try {
-      await districtsApi.remove(districts?.id || '');
-      toast.success(`${t('Remove district successfully')}!`);
+      await provinceApi.remove(province?.id || '');
+      toast.success(`${t('Remove province successfully')}!`);
       const newFilter = { ...filter };
-      dispatch(districtsActions.fetchDistrictsList(newFilter));
+      dispatch(provinceActions.fetchProvinceList(newFilter));
     } catch (error) {
-      console.log('Failed to fetch district', error);
+      console.log('Failed to fetch province', error);
     }
   };
-
-  const handleEditDistricts = async (districts: Districts) => {
+  const handleEditProvince = async (province: Province) => {
+    setProvince(province);
     setOpenPopup(true);
-    setDistricts(districts);
   };
+
   return (
     <ThemeProvider theme={theme}>
-      <Container>
+      <Container className="classes.container">
         {loading && <LinearProgress className={classes.loading} />}
         <Grid container mb={3}>
           <Grid
@@ -116,29 +119,29 @@ export default function ListPageDistrict() {
             marginTop="15px"
           >
             <CommonButton
-              className={classes.btn}
               onClick={() => setOpenPopup(true)}
               variant="contained"
+              className={classes.btn}
             >
               <AddIcon />
             </CommonButton>
           </Grid>
         </Grid>
-        <DistrictsTable
-          districtsList={districtsList}
-          onEdit={handleEditDistricts}
-          onRemove={handleRemoveDistricts}
+        <ProvinceTable
+          provinceList={provinceList}
+          onRemove={handleRemoveProvince}
+          onEdit={handleEditProvince}
         />
         <Popup
-          title={initialValues?.id ? t('Update') : t('Create ')}
-          subtitle={t('Please enter all information in the box below')}
+          title={initialValues?.id ? t('Update todo') : t('Create todo')}
+          subtitle={t('Fill in required fields below')}
           openPopup={openPopup}
           onClose={() => {
             setOpenPopup(false);
-            setDistricts(undefined);
+            setProvince(undefined);
           }}
         >
-          <DistrictsForm onClose={() => setOpenPopup(false)} initialValues={initialValues} />
+          <ProvinceForm onClose={() => setOpenPopup(false)} initialValues={initialValues} />
         </Popup>
       </Container>
     </ThemeProvider>

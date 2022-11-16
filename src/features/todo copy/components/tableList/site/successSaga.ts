@@ -3,7 +3,7 @@ import siteApi from 'api/siteApi';
 import { ListParams, ListResponse } from 'models';
 import { Site } from 'models/site';
 import { call, debounce, put, takeLatest } from 'redux-saga/effects';
-import { siteActions } from './siteSlice';
+import { siteActions } from './successSlice';
 
 function* fetchSiteList(action: PayloadAction<ListParams>) {
   try {

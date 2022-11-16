@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
-import { provinceActions, selectProvinceFilter } from '../provinceSlice';
+import { provinceActions, selectProvinceFilter } from '../inprogressSlice';
 
 export interface ProvinceFormProps {
   initialValues?: Province;

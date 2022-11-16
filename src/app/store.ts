@@ -8,9 +8,9 @@ import rootSaga from './rootSaga';
 
 import changePasswordReducer from '../features/auth/changePasswordSlice';
 import todoReducer from 'features/todo/todoSlice';
-import districtsReducer from 'features/todo copy/components/tableList/district/districtSlice';
-import provinceReducer from 'features/todo copy/components/tableList/province/provinceSlice';
-import siteReducer from 'features/todo copy/components/tableList/site/siteSlice';
+import districtsReducer from 'features/todo copy/components/tableList/district/pendingSlice';
+import provinceReducer from 'features/todo copy/components/tableList/province/inprogressSlice';
+import siteReducer from 'features/todo copy/components/tableList/site/successSlice';
 const rootReducer = combineReducers({
   router: connectRouter(history),
   auth: authReducer,

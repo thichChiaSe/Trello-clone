@@ -14,9 +14,9 @@ import { t } from 'i18next';
 import siteApi from 'api/siteApi';
 
 import SiteFilter from '../components/sitesFilter';
-import SiteTable from '../components/sitesTable';
-import SiteForm from '../components/sitesForm';
-import { selectSiteFilter, selectSiteList, selectSiteLoading, siteActions } from '../siteSlice';
+import SiteTable from '../components/successTable';
+import SiteForm from '../components/successForm';
+import { selectSiteFilter, selectSiteList, selectSiteLoading, siteActions } from '../successSlice';
 import { Site } from 'models/site';
 import { ListParams } from 'models';
 

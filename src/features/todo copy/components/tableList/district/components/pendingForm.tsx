@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
-import { districtsActions, selectDistrictsFilter } from '../districtSlice';
+import { districtsActions, selectDistrictsFilter } from '../pendingSlice';
 
 export interface DistrictsFormProps {
   initialValues?: Districts;

@@ -3,7 +3,7 @@ import provinceApi from 'api/province';
 import { ListParams, ListResponse } from 'models';
 import { Province } from 'models/province';
 import { call, debounce, put, takeLatest } from 'redux-saga/effects';
-import { provinceActions } from './provinceSlice';
+import { provinceActions } from './inprogressSlice';
 
 function* fetchProvinceList(action: PayloadAction<ListParams>) {
   try {

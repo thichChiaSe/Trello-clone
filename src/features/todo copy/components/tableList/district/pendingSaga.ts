@@ -3,7 +3,7 @@ import districtsApi from 'api/districtApi';
 import { ListParams, ListResponse } from 'models';
 import { Districts } from 'models/district';
 import { call, debounce, put, takeLatest } from 'redux-saga/effects';
-import { districtsActions } from './districtSlice';
+import { districtsActions } from './pendingSlice';
 
 function* fetchDistrictsList(action: PayloadAction<ListParams>) {
   try {

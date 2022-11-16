@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import ListPageProvince from './tableList/province/pages/ListPageProvince';
-import ListPageDistrict from './tableList/district/pages/ListPageDistrict';
+import ListPageProvince from './tableList/province/pages/ListPageInprogress';
+import ListPageDistrict from './tableList/district/pages/ListPagePending';
 import ListPageSite from './tableList/site/pages/ListPageSite';
 
 interface TabPanelProps {

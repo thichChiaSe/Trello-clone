@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
-import { selectSiteFilter, siteActions } from '../siteSlice';
+import { selectSiteFilter, siteActions } from '../successSlice';
 
 export interface SiteFormProps {
   initialValues?: Site;
