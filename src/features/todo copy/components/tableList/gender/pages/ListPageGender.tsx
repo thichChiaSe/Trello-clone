@@ -1,26 +1,27 @@
 import AddIcon from '@mui/icons-material/Add';
-import { Pagination } from '@mui/lab';
 import { Box, Container, Grid, LinearProgress, TablePagination, Theme } from '@mui/material';
+import { viVN } from '@mui/material/locale';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createStyles, makeStyles } from '@mui/styles';
+import genderApi from 'api/genderApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { CommonButton } from 'components/Common/CommonButton';
 import Popup from 'components/Common/PopUp';
+import { t } from 'i18next';
+import { Gender } from 'models/gender';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { viVN } from '@mui/material/locale';
-import { t } from 'i18next';
-
-import siteApi from 'api/siteApi';
-
-import SiteFilter from '../components/sitesFilter';
-import SiteTable from '../components/successTable';
-import SiteForm from '../components/successForm';
-import { selectSiteFilter, selectSiteList, selectSiteLoading, siteActions } from '../successSlice';
-import { Site } from 'models/site';
-import { ListParams } from 'models';
+import GenderForm from '../components/genderForm';
+import GenderTable from '../components/genderTable';
+import {
+  genderActions,
+  selectGenderFilter,
+  selectGenderList,
+  selectGenderLoading,
+} from '../genderSlice';
 
 const theme = createTheme({}, viVN);
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     titleContainer: {
@@ -54,45 +55,46 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function ListPageSite() {
-  const siteList = useAppSelector(selectSiteList);
-
-  const filter = useAppSelector(selectSiteFilter);
-  const loading = useAppSelector(selectSiteLoading);
+export default function ListPageGender() {
+  const genderList = useAppSelector(selectGenderList);
+  const filter = useAppSelector(selectGenderFilter);
+  const loading = useAppSelector(selectGenderLoading);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
   const [openPopup, setOpenPopup] = useState(false);
-  const [site, setSite] = useState<Site>();
+  const [gender, setGender] = useState<Gender>();
 
-  const initialValues: Site = {
-    alias: '',
-    ...site,
-  } as Site;
+  const initialValues: Gender = {
+    name: '',
+    ...gender,
+  } as Gender;
 
   const dispatch = useAppDispatch();
   const classes = useStyles();
 
   useEffect(() => {
-    dispatch(siteActions.fetchSiteList(filter));
+    dispatch(genderActions.fetchGenderList(filter));
   }, [dispatch, filter]);
 
-  const handleRemoveSite = async (site: Site) => {
+  const handleRemoveGender = async (gender: Gender) => {
     try {
-      //Remove site API
-      await siteApi.remove(site?.id || '');
+      // Remove gender API
+      await genderApi.remove(gender?.id || '');
       toast.success(`${t('Remove success')}!`);
-      // Trigger to re-fetch site list with current filter
+      // Trigger to re-fetch gender list with current filter
       const newFilter = { ...filter };
-      dispatch(siteActions.fetchSiteList(newFilter));
+      dispatch(genderActions.fetchGenderList(newFilter));
     } catch (error) {
-      console.log('Failed to fetch site', error);
+      // Toast error
+      console.log('Failed to fetch gender', error);
     }
   };
 
-  const handleEditSite = async (site: Site) => {
-    setSite(site);
+  const handleEditGender = async (gender: Gender) => {
+    setGender(gender);
     setOpenPopup(true);
+    console.log('clcik');
   };
 
   return (
@@ -120,17 +122,23 @@ export default function ListPageSite() {
             </CommonButton>
           </Grid>
         </Grid>
-        <SiteTable siteList={siteList} onRemove={handleRemoveSite} onEdit={handleEditSite} />
+
+        <GenderTable
+          genderList={genderList}
+          onEdit={handleEditGender}
+          onRemove={handleRemoveGender}
+        />
+
         <Popup
           title={initialValues?.id ? t('Update') : t('Create')}
           subtitle={t('Fill in required fields below')}
           openPopup={openPopup}
           onClose={() => {
             setOpenPopup(false);
-            setSite(undefined);
+            setGender(undefined);
           }}
         >
-          <SiteForm onClose={() => setOpenPopup(false)} initialValues={initialValues} />
+          <GenderForm onClose={() => setOpenPopup(false)} initialValues={initialValues} />
         </Popup>
       </Container>
     </ThemeProvider>

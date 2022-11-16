@@ -1,52 +1,53 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
 import { ListParams, ListResponse } from 'models';
-import { Site } from 'models/site';
+import { Gender } from 'models/gender';
 
-export interface SiteState {
+export interface GenderState {
   loading: boolean;
-  list: Site[];
+  list: Gender[];
   filter: ListParams;
   pageCount: number;
   totalRow: number;
 }
 
-const initialState: SiteState = {
+const initialState: GenderState = {
   loading: false,
   list: [],
   filter: {
+    name: '',
     pageIndex: 0,
     pageSize: 10,
-    name: '',
+    search: '',
   },
   pageCount: 0,
   totalRow: 0,
 };
 
-const siteSlice = createSlice({
-  name: 'site',
+const genderSlice = createSlice({
+  name: 'gender',
   initialState,
   reducers: {
-    fetchSiteList(state, action: PayloadAction<ListParams>) {
+    fetchGenderList(state, action: PayloadAction<ListParams>) {
       state.loading = true;
     },
-    fetchSiteListSuccess(state, action: PayloadAction<ListResponse<Site>>) {
+    fetchGenderListSuccess(state, action: PayloadAction<ListResponse<Gender>>) {
       state.list = action.payload.data;
       state.pageCount = action.payload.pageCount;
       state.totalRow = action.payload.totalRow;
       state.loading = false;
     },
-    fetchSiteListFailed(state) {
+
+    fetchGenderListFailed(state) {
       state.loading = false;
     },
 
     setFilter(state, action: PayloadAction<ListParams>) {
       console.log(action.payload);
-
       state.filter = {
         ...action.payload,
         pageIndex: action.payload.pageIndex,
-        name: action.payload.name,
+        searchGender: action.payload.searchGender,
       };
     },
 
@@ -55,15 +56,15 @@ const siteSlice = createSlice({
 });
 
 // Actions
-export const siteActions = siteSlice.actions;
+export const genderActions = genderSlice.actions;
 
 // Selectors
-export const selectSiteList = (state: RootState) => state.site.list;
-export const selectSiteLoading = (state: RootState) => state.site.loading;
-export const selectSiteFilter = (state: RootState) => state.site.filter;
-export const selectSitePageCount = (state: RootState) => state.site.pageCount;
-export const selectSiteTotalRow = (state: RootState) => state.site.totalRow;
+export const selectGenderList = (state: RootState) => state.gender.list;
+export const selectGenderLoading = (state: RootState) => state.gender.loading;
+export const selectGenderFilter = (state: RootState) => state.gender.filter;
+export const selectGenderPageCount = (state: RootState) => state.gender.pageCount;
+export const selectGenderTotalRow = (state: RootState) => state.gender.totalRow;
 
 // Reducer
-const siteReducer = siteSlice.reducer;
-export default siteReducer;
+const genderReducer = genderSlice.reducer;
+export default genderReducer;

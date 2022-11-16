@@ -17,44 +17,44 @@ import EditIcon from '@mui/icons-material/Edit';
 import ClearIcon from '@mui/icons-material/Clear';
 import { red } from '@mui/material/colors';
 import { t } from 'i18next';
-import { Site } from 'models/site';
+import { Gender } from 'models/gender';
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
     width: '250px',
     border: '1px solid #08ab3b',
   },
-  title: {
-    backgroundColor: '#08ab3b',
-  },
   table: {},
   edit: {
     marginRight: 4,
   },
+  title: {
+    backgroundColor: '#08ab3b',
+  },
 }));
 
-export interface SiteTableProps {
-  siteList: Site[];
-  onEdit?: (site: Site) => void;
-  onRemove?: (site: Site) => void;
+export interface GenderTableProps {
+  genderList: Gender[];
+  onEdit?: (gender: Gender) => void;
+  onRemove?: (gender: Gender) => void;
 }
 
-export default function SiteTable({ siteList, onEdit, onRemove }: SiteTableProps) {
+export default function GenderTable({ genderList, onEdit, onRemove }: GenderTableProps) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [selectedSite, setSelectedSite] = useState<Site>();
+  const [selectedGender, setSelectedGender] = useState<Gender>();
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleRemoveClick = (site: Site) => {
-    setSelectedSite(site);
+  const handleRemoveClick = (gender: Gender) => {
+    setSelectedGender(gender);
     setOpen(true);
   };
 
-  const handleRemoveConfirm = (site: Site) => {
-    onRemove?.(site);
+  const handleRemoveConfirm = (gender: Gender) => {
+    onRemove?.(gender);
     setOpen(false);
   };
 
@@ -68,53 +68,30 @@ export default function SiteTable({ siteList, onEdit, onRemove }: SiteTableProps
             </TableRow>
           </TableHead>
           <TableBody>
-            {siteList?.length ? (
-              siteList.map((site, index) => (
-                <TableRow key={site.id}>
+            {genderList?.length ? (
+              genderList.map((gender, index) => (
+                <TableRow key={gender.id}>
                   <TableCell width={250}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      {!site.alias ? t('No data to display') : site.alias}
+                      {!gender.alias ? t('No data to display') : gender.alias}
                       <div style={{ marginLeft: '10px' }}>
                         <IconButton
                           aria-label="edit"
                           color="primary"
-                          onClick={() => onEdit?.(site)}
+                          onClick={() => onEdit?.(gender)}
                         >
                           <EditIcon />
                         </IconButton>
                         <IconButton
                           aria-label="delete"
                           sx={{ color: red[500] }}
-                          onClick={() => {
-                            handleRemoveClick(site);
-                          }}
+                          onClick={() => handleRemoveClick(gender)}
                         >
                           <DeleteIcon />
                         </IconButton>
                       </div>
                     </div>
                   </TableCell>
-                  {/* <TableCell
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      justifyContent: 'flex-end',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <IconButton aria-label="edit" color="primary" onClick={() => onEdit?.(site)}>
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton
-                      aria-label="delete"
-                      sx={{ color: red[500] }}
-                      onClick={() => {
-                        handleRemoveClick(site);
-                      }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell> */}
                 </TableRow>
               ))
             ) : (
@@ -140,7 +117,7 @@ export default function SiteTable({ siteList, onEdit, onRemove }: SiteTableProps
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {t('ConfirmDeleteMessage')} "{selectedSite?.name}"?. <br />
+            {t('ConfirmDeleteMessage')} <br />
             {`${t('SubConfirmDeleteMessage')}.`}
           </DialogContentText>
         </DialogContent>
@@ -148,8 +125,9 @@ export default function SiteTable({ siteList, onEdit, onRemove }: SiteTableProps
           <Button onClick={handleClose} color="primary">
             {t('cancel')}
           </Button>
+
           <Button
-            onClick={() => handleRemoveConfirm(selectedSite as Site)}
+            onClick={() => handleRemoveConfirm(selectedGender as Gender)}
             color="error"
             variant="contained"
             autoFocus

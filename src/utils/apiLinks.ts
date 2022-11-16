@@ -20,8 +20,11 @@ export const apiLinks = {
   },
   districts: {
     common: `${dataHubModule}/Districts`,
-  },
+  }, // pending
   province: {
     common: `${dataHubModule}/Provinces`,
+  }, // inprogress
+  gender: {
+    common: `${dataHubModule}/Gender`,
   },
 };

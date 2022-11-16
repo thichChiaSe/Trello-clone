@@ -1,63 +1,58 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Alert } from '@mui/lab';
 import { Box, Button, CircularProgress } from '@mui/material';
-import siteApi from 'api/siteApi';
+import genderApi from 'api/genderApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { InputField } from 'components/FormFields';
 import { t } from 'i18next';
-import { Site } from 'models/site';
+import { Gender } from 'models/gender';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
-import { selectSiteFilter, siteActions } from '../successSlice';
+import { genderActions, selectGenderFilter } from '../genderSlice';
 
-export interface SiteFormProps {
-  initialValues?: Site;
+export interface GenderFormProps {
+  initialValues?: Gender;
   onClose: () => void;
 }
 
 const schema = yup.object().shape({
-  alias: yup.string().required(t('Site name is required')),
+  alias: yup.string().required('Vui lòng nhập'),
 });
 
-export default function SiteForm({ initialValues, onClose }: SiteFormProps): JSX.Element {
+export default function GenderForm({ initialValues, onClose }: GenderFormProps): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<string>('');
   const isEdit = Boolean(initialValues?.id);
   const dispatch = useAppDispatch();
-  const filter = useAppSelector(selectSiteFilter);
+  const filter = useAppSelector(selectGenderFilter);
 
   const {
     control,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<Site>({
+  } = useForm<Gender>({
     defaultValues: initialValues,
     resolver: yupResolver(schema),
   });
 
-  const handleSiteFormSubmit = async (formValues: Site) => {
+  const handleGenderFormSubmit = async (formValues: Gender) => {
     if (isEdit) {
-      await siteApi.updateSyn(formValues);
+      await genderApi.updateSyn(formValues);
       toast.success(`${t('Update success')}!`);
     } else {
-      await siteApi.addSyn(formValues);
+      await genderApi.addSyn(formValues);
       toast.success(`${t('Create success')}!`);
     }
-    dispatch(siteActions.fetchSiteList(filter));
+    dispatch(genderActions.fetchGenderList(filter));
     onClose();
   };
 
   return (
     <Box maxWidth={400}>
-      <form onSubmit={handleSubmit(handleSiteFormSubmit)}>
-        <InputField
-          name="alias"
-          control={control}
-          placeholder={t('Input')}
-          // label={`${t('Synonyms')}*`}
-        />
+      <form onSubmit={handleSubmit(handleGenderFormSubmit)}>
+        <InputField name="alias" control={control} placeholder={t('Input')} />
         {error && <Alert severity="error">{error}</Alert>}
         <Box mt={3}>
           <Button type="submit" variant="contained" color="primary" disabled={isSubmitting}>

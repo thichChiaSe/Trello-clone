@@ -4,10 +4,9 @@ import React from 'react';
 import { createStyles, makeStyles } from '@mui/styles';
 import ScrollToTop from 'react-scroll-to-top';
 import { Box, Container, LinearProgress, Theme, Typography } from '@mui/material';
-import SynonymsTabs from '../components/synonymsTabs';
 import ListPageProvince from '../components/tableList/province/pages/ListPageInprogress';
 import ListPageDistrict from '../components/tableList/district/pages/ListPagePending';
-import ListPageSite from '../components/tableList/site/pages/ListPageSite';
+import ListPageGender from '../components/tableList/gender/pages/ListPageGender';
 const theme = createTheme({}, viVN);
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -48,7 +47,7 @@ export default function ListPage() {
         <div style={{ display: 'flex' }}>
           <ListPageProvince />
           <ListPageDistrict />
-          <ListPageSite />
+          <ListPageGender />
         </div>
         <ScrollToTop
           smooth
