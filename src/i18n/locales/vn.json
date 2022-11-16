@@ -321,5 +321,11 @@
   "Change Password": "Thay đổi mật khẩu",
   "Logout": "Đăng xuất",
   "Update gender successfully": "Cập nhật giới tính thành công",
-  "Create gender successfully": "Tạo mới giới tính thành công"
+  "Create gender successfully": "Tạo mới giới tính thành công",
+  "Create todo": "Tạo mới inprogress",
+  "Update todo": "Cập nhật inprogress",
+  "Create ": "Tạo mới",
+  "Input ": "Nhập vào",
+  "Update success": "Cập nhật thành công",
+  "Create success": "Tạo mới thành công"
 }

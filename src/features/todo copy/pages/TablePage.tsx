@@ -5,6 +5,9 @@ import { createStyles, makeStyles } from '@mui/styles';
 import ScrollToTop from 'react-scroll-to-top';
 import { Box, Container, LinearProgress, Theme, Typography } from '@mui/material';
 import SynonymsTabs from '../components/synonymsTabs';
+import ListPageProvince from '../components/tableList/province/pages/ListPageProvince';
+import ListPageDistrict from '../components/tableList/district/pages/ListPageDistrict';
+import ListPageSite from '../components/tableList/site/pages/ListPageSite';
 const theme = createTheme({}, viVN);
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -14,6 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: ' space-between',
       alignItems: 'center',
       marginBottom: 16,
+      marginLeft: '500px',
+      marginTop: '30px',
     },
     loading: {
       position: 'absolute',
@@ -26,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyItems: 'space-between',
       alignItems: ' center',
     },
+    text: {},
   })
 );
 export default function ListPage() {
@@ -35,11 +41,13 @@ export default function ListPage() {
     <ThemeProvider theme={theme}>
       <Container>
         <Box className={classes.titleContainer}>
-          <Typography component="h1" variant="h5" fontWeight="bold">
+          <Typography component="h1" variant="h5" fontWeight="bold" className="classes.text">
             Trolle
           </Typography>
         </Box>
-        <SynonymsTabs />
+        <ListPageProvince />
+        <ListPageDistrict />
+        <ListPageSite />
         <ScrollToTop
           smooth
           viewBox="0 0 24 24"
