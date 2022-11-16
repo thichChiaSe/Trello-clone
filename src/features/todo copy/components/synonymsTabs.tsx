@@ -13,10 +13,11 @@ interface TabPanelProps {
 export default function SynonymsTabs() {
   return (
     <Box sx={{ width: '100%', padding: '0px !important' }}>
-      <ListPageProvince />
-      <ListPageDistrict />
-      <ListPageSite />
+      <div style={{ display: 'flex' }}>
+        <ListPageProvince />
+        <ListPageDistrict />
+        <ListPageSite />
+      </div>
     </Box>
   );
 }
-

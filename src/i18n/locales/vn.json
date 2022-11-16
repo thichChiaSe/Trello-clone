@@ -327,5 +327,11 @@
   "Create ": "Tạo mới",
   "Input ": "Nhập vào",
   "Update success": "Cập nhật thành công",
-  "Create success": "Tạo mới thành công"
+  "Create success": "Tạo mới thành công",
+  "Input": "Nhập vào",
+  "Create pending": "Tạo mới pending",
+  "Update pending": "Cập nhập pending",
+  "Update": "Cập nhật",
+  "Remove success": "Xóa thành công",
+  "Create": "Tạo mới"
 }

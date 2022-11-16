@@ -65,16 +65,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ListPageProvince() {
   const provinceList = useAppSelector(selectProvinceList);
-  const pageCount = useAppSelector(selectProvincePageCount);
-  const totalRow = useAppSelector(selectProvinceTotalRow);
 
   const filter = useAppSelector(selectProvinceFilter);
   const loading = useAppSelector(selectProvinceLoading);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [pageIndex, setPageIndex] = React.useState(1);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [pageSize, setPageSize] = React.useState(10);
 
   const [openPopup, setOpenPopup] = useState(false);
   const [province, setProvince] = useState<Province>();

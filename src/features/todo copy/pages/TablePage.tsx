@@ -45,9 +45,11 @@ export default function ListPage() {
             Trolle
           </Typography>
         </Box>
-        <ListPageProvince />
-        <ListPageDistrict />
-        <ListPageSite />
+        <div style={{ display: 'flex' }}>
+          <ListPageProvince />
+          <ListPageDistrict />
+          <ListPageSite />
+        </div>
         <ScrollToTop
           smooth
           viewBox="0 0 24 24"

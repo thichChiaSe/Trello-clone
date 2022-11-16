@@ -65,7 +65,7 @@ export default function ProvinceTable({ provinceList, onEdit, onRemove }: Provin
             {provinceList?.length ? (
               provinceList.map((province, index) => (
                 <TableRow key={province.id}>
-                  <TableCell width={250} key={province.id}>
+                  <TableCell width={250}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       {!province.alias ? t('No data to display') : province.alias}
                       <div style={{ marginLeft: '10px' }}>
