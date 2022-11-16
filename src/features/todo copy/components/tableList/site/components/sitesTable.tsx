@@ -60,7 +60,7 @@ export default function SiteTable({ siteList, onEdit, onRemove }: SiteTableProps
 
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className={classes.container}>
         <Table className={classes.table} size="small" aria-label="simple table">
           <TableHead>
             <TableRow className={classes.title}>

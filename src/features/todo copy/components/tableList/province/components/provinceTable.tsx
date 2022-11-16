@@ -17,13 +17,13 @@ import { Province } from 'models/province';
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
     width: '250px',
-    border: '1px solid #08ab3b',
+    border: '1px solid #c5b90c',
   },
   table: {
     backgroundColor: '',
   },
   title: {
-    backgroundColor: '#08ab3b',
+    backgroundColor: '#c5b90c',
   },
   edit: {
     marginRight: 4,

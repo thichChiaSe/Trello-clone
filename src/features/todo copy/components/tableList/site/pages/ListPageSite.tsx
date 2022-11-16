@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     btn: {
       position: 'absolute',
-      right: '95px',
+      right: '180px',
       top: '190px',
       minWidth: '25px!important',
       maxWidth: '25px!important',

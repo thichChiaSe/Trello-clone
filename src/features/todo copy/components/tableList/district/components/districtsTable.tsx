@@ -23,14 +23,14 @@ import { Districts } from 'models/district';
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
     width: '250px',
-    border: '1px solid #c5bf19',
+    border: '1px solid #de2a2a',
   },
   table: {},
   edit: {
     marginRight: 4,
   },
   title: {
-    backgroundColor: '#c5bf19',
+    backgroundColor: '#de2a2a',
   },
 }));
 
